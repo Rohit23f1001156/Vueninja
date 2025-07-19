@@ -4,9 +4,116 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vue app</title>
-    <script></script>
+    <script src="https://unpkg.com/vue@3.0.2"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #212121;
+            color: #e6dcdc;
+            padding: 20px;
+        }
+        h1 {
+            color: #4CAF50;
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px 15px;
+            background-color: #008CBA;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #005f73;
+        }
+        .box{
+            padding: 100px 0;
+            background-color: #f3acd3;
+            color: #020000;
+            margin: 20px 0;
+            border: 1px solid #020000;
+            border-radius: 5px;
+            display: inline-block;
+            width: 400px;
+            text-align: center;
+
+        }
+    </style>
 </head>
 <body>
-    
+    <h1>Hello Vue :)</h1>
+    <div id="app">
+
+        <!-- PART 1 -->
+        <!-- <p>{{ title }}</p>
+        <p>{{ author }}</p>
+        <p>{{ age}}</p>
+        <button v-on:click="age++">Increase Age</button>         
+        <button v-on:click="age--">Decrease Age</button>  
+        <div @click="changeTitle('Harry Potter')">Change Title</div>       @ is an shortcut for reacting to any even, like here shortcut too v-on -->
+        <!--v-on is  a directive, v stands for Vue, on is the event handler : click means on click, then inside 
+        we can put the name of the function we want to call, in this case age++ or age--.
+        We can also use v-on:click="myFunction" to call a function defined in the Vue instance. 
+        The function can be defined in the methods section of the Vue instance.
+        The methods section is an object that contains functions that can be called from the template.
+        The methods section is defined in the Vue instance like this:
+        methods: {
+            myFunction: function() {
+                // code to be executed when the button is clicked
+            }
+        }
+        -->
+
+        <!-- PART 2 -->
+        <div v-if="showBooks">
+            <!-- PART 3 -->
+             <ul>
+                <li v-for = "book in books">
+                    <h3>{{book.title}}</h3>
+                    <h5>{{book.author}}</h5>
+                </li>
+
+             </ul>
+            <!-- PART 2
+            <p>{{ title }}</p>
+            <p>{{ author }}</p>
+            <p>{{ age}}</p>
+            <button v-on:click="age++">Increase Age</button>         
+            <button v-on:click="age--">Decrease Age</button>  
+            <div @click="changeTitle('Harry Potter')">Change Title</div>  -->
+        </div>
+        <button @click="toggleShowBooks">
+            <span v-if="showBooks">Hide books</span>
+            <span v-else>Show books</span>
+        </button>
+
+        <div v-show="showBooks">
+            cuurently showing books
+        </div>
+        <!-- difference between v-if and v-show
+            v-if, the element is not rendered in the DOM if the condition is false,
+            v-show, the element is rendered in the DOM but hidden with CSS if the condition is false.
+            v-if is more expensive than v-show because it has to add or remove the element
+            from the DOM, while v-show just toggles the display property.
+            v-if is used when you want to conditionally render an element, while v-show is
+            used when you want to conditionally show or hide an element. 
+        -->
+        <br>
+        <hr>
+    <!-- PART 3 -->
+     <div class="box" @mouseover="handleEvent">MouseOver</div>      
+     <!-- when we don't pass any argument, then event object is automatically the first arguement recieved, but when we pass 
+        our own arg in, we have to explicitly pass the event arguement like ($event)
+        if we pass our own arg, without $event, then e becomes undefined
+     -->
+     <div class="box" @mouseleave="handleEvent($event, 5)">Mouseleave</div>
+     <div class="box" @dblclick="handleEvent">double click</div>
+     <div class="box" @mousemove="handleMouseMove">Positions are {{x}} {{y}}</div>
+         
+        
+        
+    </div>
+    <script src = "app.js"></script>
 </body>
 </html>
