@@ -39,12 +39,38 @@
             text-align: center;
 
         }
+        .fav {
+            background-color: #ffb3b3;
+            color: #ff0000;
+            font-weight: bold;
+
+        }
+        li {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #d5e21e;
+            color: #020000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
     </style>
 </head>
 <body>
     <h1>Hello Vue :)</h1>
     <div id="app">
-
+        <!-- PART 4 -->
+        <!-- 
+        if we do:
+        <a href="url" or even href={{url}}> website </a>
+        then it will not work, because Vue will not interpret the url variable, it will just treat it as a string.
+        To make it work, we have to use v-bind:href or just :href, known as attribute binding.
+        like this:
+        -->
+        <!-- <a v-bind:href="url">website</a>  full form, shortcut-->
+         <a :href="url">Vue website</a> <!-- shortcut, v-bind:href is the same as :href -->
         <!-- PART 1 -->
         <!-- <p>{{ title }}</p>
         <p>{{ author }}</p>
@@ -69,8 +95,11 @@
         <div v-if="showBooks">
             <!-- PART 3 -->
              <ul>
-                <li v-for = "book in books">
-                    <h3>{{book.title}}</h3>
+                <!--giving class consitionally, so we can apply styling based on certain class, which is 
+                    apllicable only to certain elements inside the loop, like here we can have diff fav books  -->              
+                <li v-for = "book in books" :class="{fav: book.isFav }" @click="changeFav(book)">       
+                    <img :src="book.image" :alt="book.title" width="100" height="150">
+                    <h3>{{book.title}}</h3><br>
                     <h5>{{book.author}}</h5>
                 </li>
 
