@@ -63,4 +63,69 @@ eg: data-v-701ac82d, added to modal in my project
 if we want to aplly styles globally, we can create a css file in the assets folder and import it in the main.js file
 
 
+**************************** PROPS IN VUE *********************************************************************
+
+we can pass props from a parent component to a child component
+props make code more reusable and modular, so we only have to define the common data at one single place 
+we can pass props to a child component using the v-bind directive
+the v-bind directive is used to bind a data property to a prop in the child component
+
+
+************
+this.$emit is used to emit an event from a child component to a parent component
+this is useful to notify the parent component that something has changed in the child component,
+and the parent component can then update its state accordingly
+
+
+***********
+when using click events, if we have click event on parent, then the child also reacts to the click event
+like for the modal example, we wanted the modal to close when we click outside the modal, 
+but it also gets closed when we click inside the modal, so to avoid this, we can use click event modifiers
+eg are: @click.right, @click.alt etc
+to solve our problem we use, @click.self
+
+*************
+we cant pass the whole form as prop to the modal component, so instead  we use slots
+slots are very useful to pass custom templates into a component
+so props for simple data, and slots for complex templates
+slots are used to pass content from a parent component to a child component
+we can use the <slot> tag to define a slot in the child component, and then
+we can pass content to that slot from the parent component
+rather than having a self closing tag as we have used till now
+we now have a separate opening and closing tag for the modal component 
+
+so the custom template defined in the parent component will be passed to the slot in the child component
+and the child component can then render that template inside the modal
+we can also use named slots to pass multiple templates to a child component 
+
+
+
+********** teleport in Vue *********************************************************************
+teleport is a feature in Vue that allows us to render a component in a different part of the DOM
+this is useful for modals, tooltips, and other components that need to be rendered outside of the normal flow of the document
+we can use the <teleport> tag to define a teleport in the child component, and then
+we can pass the target element to the teleport
+the target element is the element where the component will be rendered
+we can use the to prop to specify the target element
+the target element can be an id, a class, or any other valid CSS selector
+the teleport will then render the component in the target element, and the component will be able to
+access the DOM elements in the target element.
+
+eg in my project:
+we know that everything is inside the app, which is  <div id="app"></div>, all the files are injected here.
+but we can create a new div for the modal, and then use teleport to render the modal in that div
+this way, the modal will be rendered outside of the app div, and we can style it.
+
+syntax:
+<teleport to=".modals" v-if="showModal2==true">     <!-- replaced div with teleport -->
+      <Modal  @close = "toggleModal2">
+          <template v-slot:links >
+            <a href="#">Sign up now</a>   
+            <br>
+            <a href="#">More info</a>
+          </template>
+          <h1>Modal 2 Header</h1>
+          <p>Modal 2 text</p>    
+      </Modal>      
+  </teleport>
 */
