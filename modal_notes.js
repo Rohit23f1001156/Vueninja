@@ -128,4 +128,26 @@ syntax:
           <p>Modal 2 text</p>    
       </Modal>      
   </teleport>
+
+
+*************************************   LIFECYCLE HOOKS IN VUE   **************************************************************
+
+lifecycle hooks are functions that are called at specific points in the lifecycle of a Vue component
+they allow us to run code at specific points in the lifecycle of a component, such as when
+the component is created, mounted, updated, or destroyed
+
+the most commonly used lifecycle hooks are:
+- created: called when the component is created, before it is mounted, no data or methods are available yet
+- mounted: called when the component is mounted, after it is rendered in the DOM, popular for fetching data
+- updated: called when the component is updated, after it is re-rendered in the DOM, 
+- destroyed: called when the component is destroyed, before it is removed from the DOM
+- beforeDestroy: called before the component is destroyed, before it is removed from the DOM
+- beforeMount: called before the component is mounted, before it is rendered in the DOM, can access data and methods
+- beforeUpdate: called before the component is updated, before it is re-rendered in the
+- beforeCreate: called before the component is created, before it is initialized, no data or methods are available yet
+
+************************************** FORMS AND INPUTS IN VUE **************************************************************
+
+
+
 */
